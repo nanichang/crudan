@@ -128,6 +128,15 @@
         .sidebar('attach events', '.toc.item')
       ;
 
+      $('.message .close')
+        .on('click', function() {
+          $(this)
+            .closest('.message')
+            .transition('fade')
+          ;
+        }
+      );
+
     })
   ;
   </script>
