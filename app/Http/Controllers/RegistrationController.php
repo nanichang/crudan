@@ -37,14 +37,29 @@ class RegistrationController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function storeIndividual(Request $request){
-        Individual::create($request->all()); 
-        return redirect()->back()->with('message','Created successfully.');
+
+        if (Individual::create($request->all())) {
+            $request->session()->flash('message.level', 'success');
+            $request->session()->flash('message.content', 'Registered successfully!');
+        } else {
+            $request->session()->flash('message.level', 'danger');
+            $request->session()->flash('message.content', 'Error!');
+        }
+        
+        return redirect()->back();
     }
 
-    public function createCorporate(Request $request){
-        // dd($request->all());
-        Corporate::create($request->all()); 
-        return redirect()->back()->with('message','Created successfully.');
+    public function createCorporate(Request $request){       
+
+        if (Corporate::create($request->all())) {
+            $request->session()->flash('message.level', 'success');
+            $request->session()->flash('message.content', 'Registered successfully!');
+        } else {
+            $request->session()->flash('message.level', 'danger');
+            $request->session()->flash('message.content', 'Error!');
+        }
+        
+        return redirect()->back();
     }
 
     /**

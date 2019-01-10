@@ -15,6 +15,16 @@ class CreateIndividualsTable extends Migration
     {
         Schema::create('individuals', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('full_name');
+            $table->string('mailing_address');
+            $table->string('phone');
+            $table->string('email');
+            $table->string('church');
+            $table->string('project');
+            $table->string('interest');
+            $table->string('activities');
+            $table->string('challenges');
+            $table->string('expections');
             $table->timestamps();
         });
     }
@@ -29,3 +39,13 @@ class CreateIndividualsTable extends Migration
         Schema::dropIfExists('individuals');
     }
 }
+
+
+
+
+
+
+
+
+
+

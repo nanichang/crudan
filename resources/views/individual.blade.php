@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
   <!-- Site Properties -->
-  <title>Homepage - Semantic</title>
+  <title>CRUDAN - Individual Registration</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
 
   <style type="text/css">
@@ -101,7 +101,10 @@
 
   </style>
 
-  <script src="assets/library/jquery.min.js"></script>
+  <script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
   <script>
   $(document)
@@ -125,6 +128,15 @@
         .sidebar('attach events', '.toc.item')
       ;
 
+      $('.message .close')
+        .on('click', function() {
+          $(this)
+            .closest('.message')
+            .transition('fade')
+          ;
+        })
+      ;
+
     })
   ;
   </script>
@@ -134,61 +146,62 @@
 <!-- Following Menu -->
 <div class="ui large top fixed hidden menu">
   <div class="ui container">
-    <a class="active item">Home</a>
-    <a class="item">Work</a>
-    <a class="item">Company</a>
-    <a class="item">Careers</a>
-    <div class="right menu">
-      <div class="item">
-        <a class="ui button">Log in</a>
-      </div>
-      <div class="item">
-        <a class="ui primary button">Sign Up</a>
-      </div>
-    </div>
+    <a class="item" href="{{ route('corporate') }}">Corporate</a>
+    <a class="active item" href="{{ route('individual') }}">Individual</a>
   </div>
 </div>
 
 <!-- Sidebar Menu -->
 <div class="ui vertical inverted sidebar menu">
-  <a class="active item">Home</a>
-  <a class="item">Work</a>
-  <a class="item">Company</a>
-  <a class="item">Careers</a>
-  <a class="item">Login</a>
-  <a class="item">Signup</a>
+  <a class="item" href="{{ route('corporate') }}">Corporate</a>
+  <a class="active item" href="{{ route('individual') }}">Individual</a>
 </div>
 
 
 <!-- Page Contents -->
 <div class="pusher">
   <div class="ui inverted vertical center aligned segment">
-
     <div class="ui container">
       <div class="ui large secondary inverted pointing menu">
         <a class="toc item">
           <i class="sidebar icon"></i>
         </a>
-        <a class="active item">Home</a>
-        <a class="item">Work</a>
-        <a class="item">Company</a>
-        <a class="item">Careers</a>
-        <div class="right item">
-          <a class="ui inverted button">Log in</a>
-          <a class="ui inverted button">Sign Up</a>
-        </div>
+        <a class="item" href="{{ route('corporate') }}">Corporate</a>
+        <a class="active item" href="{{ route('individual') }}">Individual</a>
       </div>
     </div>
   </div>
 
+  <h3 class="ui center aligned icon header">
+    <i class="circular user icon"></i>
+    CHRISTIAN RURAL URBAN DEVELOPMENT ASSOCIATION OF NIGERIA (CRUDAN)
+  </h3>
+
+  
+  @if(session()->has('message.level'))
+    <div class="ui very padded text container">
+      <div class="ui {{ session('message.level') }} message">
+        <i class="close icon"></i>
+        <div class="header">
+          Your user registration was successful.
+        </div>
+        <ul class="list">
+          <li>{!! session('message.content') !!}</li>
+        </ul>
+      </div>
+    </div>
+  @endif
+  
+
   <div class="ui raised very padded text container segment">
-    <form class="ui form">
-      <h4 class="ui dividing header">Shipping Information</h4>
+    <form class="ui form" method="post" action="{{ route('individual.post') }}">
+      {{ csrf_field() }}
+      <h4 class="ui dividing header">Individual Membership Registration Form</h4>
       <div class="field">
-        <label>Name of Church/Project</label>
+        <label>Full Name</label>
         <div class="field">
           <div class="field">
-            <input type="text" name="project_name" placeholder="Enter Name">
+            <input type="text" name="full_name" placeholder="Enter Name">
           </div>
         </div>
       </div>
@@ -216,43 +229,29 @@
       </div>
 
       <div class="field">
-        <label>Website</label>
+        <label>Church/Affiliation</label>
         <div class="field">
           <div class="field">
-            <input type="url" name="website" placeholder="Enter url">
+            <input type="text" name="church" placeholder="Enter Church/Affiliation">
           </div>
         </div>
       </div>
 
       <div class="field">
-        <label>Office Location (Street Address)</label>
+        <label>Personal Wholistic Ministry Project (if any)</label>
         <div class="field">
           <div class="field">
-            <textarea type="text" name="office_address" rows="3" placeholder="Address"></textarea>
-          </div>
-        </div>
-      </div>
-
-
-      <div class="field">
-        <div class="two fields">
-          <div class="field">
-            <label>Contact Person</label>
-            <input type="text" name="contact_person" placeholder="Phone">
-          </div>
-          <div class="field">
-            <label>Year Founded</label>
-            <input type="text" name="year_founded" placeholder="Email Address">
+            <textarea type="text" name="project" rows="3" placeholder="Personal project"></textarea>
           </div>
         </div>
       </div>
 
 
       <div class="field">
-        <label>Aims and Objective, Vision/Mission</label>
+        <label>Areas of interest in development work</label>
         <div class="field">
           <div class="field">
-            <textarea type="text" name="vision_mission" rows="3" placeholder="Aims and Objective, Vision/Mission"></textarea>
+            <textarea type="text" name="interest" rows="3" placeholder="Areas of interest"></textarea>
           </div>
         </div>
       </div>
@@ -260,7 +259,7 @@
       <div class="field">
         <div class="two fields">
           <div class="field">
-            <label>Activities</label>
+            <label>Wholistic Ministry Activities Engaged in (if any)</label>
             <textarea type="text" name="activities" rows="3" placeholder="Activities"></textarea>
           </div>
           <div class="field">
@@ -279,121 +278,18 @@
         </div>
       </div>
 
-      <div class="field">
-        <label>Billing Address</label>
-        <div class="fields">
-          <div class="twelve wide field">
-            <input type="text" name="shipping[address]" placeholder="Street Address">
-          </div>
-          <div class="four wide field">
-            <input type="text" name="shipping[address-2]" placeholder="Apt #">
-          </div>
-        </div>
-      </div>
   
-  <h4 class="ui dividing header">Billing Information</h4>
-  <div class="field">
-    <label>Card Type</label>
-    <div class="ui selection dropdown">
-      <input type="hidden" name="card[type]">
-      <div class="default text">Type</div>
-      <i class="dropdown icon"></i>
-      <div class="menu">
-        <div class="item" data-value="visa">
-          <i class="visa icon"></i>
-          Visa
-        </div>
-        <div class="item" data-value="amex">
-          <i class="amex icon"></i>
-          American Express
-        </div>
-        <div class="item" data-value="discover">
-          <i class="discover icon"></i>
-          Discover
+      <div class="field">
+        <div class="fields">
+          <div class="eleven wide field">
+            <button class="fluid positive ui button" type="submit" tabindex="0">Submit Form</button>
+          </div>
+          <div class="five wide field">
+            <button class="fluid negative ui button" type="reset" tabindex="1">Cancel and go back</button>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="fields">
-    <div class="seven wide field">
-      <label>Card Number</label>
-      <input type="text" name="card[number]" maxlength="16" placeholder="Card #">
-    </div>
-    <div class="three wide field">
-      <label>CVC</label>
-      <input type="text" name="card[cvc]" maxlength="3" placeholder="CVC">
-    </div>
-    <div class="six wide field">
-      <label>Expiration</label>
-      <div class="two fields">
-        <div class="field">
-          <select class="ui fluid search dropdown" name="card[expire-month]">
-            <option value="">Month</option>
-            <option value="1">January</option>
-            <option value="2">February</option>
-            <option value="3">March</option>
-            <option value="4">April</option>
-            <option value="5">May</option>
-            <option value="6">June</option>
-            <option value="7">July</option>
-            <option value="8">August</option>
-            <option value="9">September</option>
-            <option value="10">October</option>
-            <option value="11">November</option>
-            <option value="12">December</option>
-          </select>
-        </div>
-        <div class="field">
-          <input type="text" name="card[expire-year]" maxlength="4" placeholder="Year">
-        </div>
-      </div>
-    </div>
-  </div>
-   <h4 class="ui dividing header">Receipt</h4>
-   <div class="field">
-    <label>Send Receipt To:</label>
-    <div class="ui fluid multiple search selection dropdown">
-      <input type="hidden" name="receipt">
-      <i class="dropdown icon"></i>
-      <div class="default text">Saved Contacts</div>
-      <div class="menu">
-        <div class="item" data-value="jenny" data-text="Jenny">
-          <img class="ui mini avatar image" src="/images/avatar/small/jenny.jpg">
-          Jenny Hess
-        </div>
-        <div class="item" data-value="elliot" data-text="Elliot">
-          <img class="ui mini avatar image" src="/images/avatar/small/elliot.jpg">
-          Elliot Fu
-        </div>
-        <div class="item" data-value="stevie" data-text="Stevie">
-          <img class="ui mini avatar image" src="/images/avatar/small/stevie.jpg">
-          Stevie Feliciano
-        </div>
-        <div class="item" data-value="christian" data-text="Christian">
-          <img class="ui mini avatar image" src="/images/avatar/small/christian.jpg">
-          Christian
-        </div>
-        <div class="item" data-value="matt" data-text="Matt">
-          <img class="ui mini avatar image" src="/images/avatar/small/matt.jpg">
-          Matt
-        </div>
-        <div class="item" data-value="justen" data-text="Justen">
-          <img class="ui mini avatar image" src="/images/avatar/small/justen.jpg">
-          Justen Kitsune
-        </div>
-      </div>
-    </div>
-  </div>
-   <div class="ui segment">
-    <div class="field">
-      <div class="ui toggle checkbox">
-        <input type="checkbox" name="gift" tabindex="0" class="hidden">
-        <label>Do not include a receipt in the package</label>
-      </div>
-    </div>
-  </div>
-  <div class="ui button" tabindex="0">Submit Order</div>
-</form>
+    </form>
   </div>
 
   <div class="ui inverted vertical footer segment">

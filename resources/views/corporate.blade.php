@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
   <!-- Site Properties -->
-  <title>Homepage - Semantic</title>
+  <title>CRUDAN - Corporate Registration</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
 
   <style type="text/css">
@@ -137,19 +137,15 @@
 <!-- Following Menu -->
 <div class="ui large top fixed hidden menu">
   <div class="ui container">
-    <a class="active item">Corporate</a>
-    <a class="item">Individual</a>
+    <a class="active item" href="{{ route('corporate') }}">Corporate</a>
+    <a class="item" href="{{ route('individual') }}">Individual</a>
   </div>
 </div>
 
 <!-- Sidebar Menu -->
 <div class="ui vertical inverted sidebar menu">
-  <a class="active item">Home</a>
-  <a class="item">Work</a>
-  <a class="item">Company</a>
-  <a class="item">Careers</a>
-  <a class="item">Login</a>
-  <a class="item">Signup</a>
+  <a class="active item" href="{{ route('corporate') }}">Corporate</a>
+  <a class="item" href="{{ route('individual') }}">Individual</a>
 </div>
 
 
@@ -161,8 +157,8 @@
         <a class="toc item">
           <i class="sidebar icon"></i>
         </a>
-        <a class="active item">Corporate</a>
-        <a class="item">Individual</a>
+        <a class="active item" href="{{ route('corporate') }}">Corporate</a>
+        <a class="item" href="{{ route('individual') }}">Individual</a>
       </div>
     </div>
   </div>
@@ -172,17 +168,19 @@
     CHRISTIAN RURAL URBAN DEVELOPMENT ASSOCIATION OF NIGERIA (CRUDAN)
   </h3>
 
-  @if ($message = Session::get('success'))
-       <div class="ui success message">
+  @if(session()->has('message.level'))
+    <div class="ui very padded text container">
+      <div class="ui {{ session('message.level') }} message">
         <i class="close icon"></i>
         <div class="header">
           Your user registration was successful.
         </div>
         <ul class="list">
-          <li>{{ message }}</li>
+          <li>{!! session('message.content') !!}</li>
         </ul>
       </div>
-    @endif
+    </div>
+  @endif
 
   <div class="ui raised very padded text container segment">
     <form class="ui form" method="post" action="{{ route('corporate.post') }}">
@@ -298,7 +296,7 @@
             <button class="fluid positive ui button" type="submit" tabindex="0">Submit Form</button>
           </div>
           <div class="five wide field">
-            <button class="fluid negative ui button" type="reset" tabindex="0">Cancel and go back</button>
+            <button class="fluid negative ui button" type="reset" tabindex="1">Cancel and go back</button>
           </div>
         </div>
       </div>
