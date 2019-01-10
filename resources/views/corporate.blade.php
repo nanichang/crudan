@@ -137,6 +137,7 @@
 <!-- Following Menu -->
 <div class="ui large top fixed hidden menu">
   <div class="ui container">
+    <a class="item" href="/">Home</a>
     <a class="active item" href="{{ route('corporate') }}">Corporate</a>
     <a class="item" href="{{ route('individual') }}">Individual</a>
   </div>
@@ -144,6 +145,7 @@
 
 <!-- Sidebar Menu -->
 <div class="ui vertical inverted sidebar menu">
+  <a class="item" href="/">Home</a>
   <a class="active item" href="{{ route('corporate') }}">Corporate</a>
   <a class="item" href="{{ route('individual') }}">Individual</a>
 </div>
@@ -157,8 +159,9 @@
         <a class="toc item">
           <i class="sidebar icon"></i>
         </a>
+        <a class="item" href="/">Home</a>
         <a class="active item" href="{{ route('corporate') }}">Corporate</a>
-        <a class="item" href="{{ route('individual') }}">Individual</a>
+        <a class="item" href="{{ route('individual') }}">Individual</a>        
       </div>
     </div>
   </div>
@@ -306,31 +309,13 @@
   </div>
 
   <div class="ui inverted vertical footer segment">
-    <div class="ui container">
-      <div class="ui stackable inverted divided equal height stackable grid">
-        <div class="three wide column">
-          <h4 class="ui inverted header">About</h4>
-          <div class="ui inverted link list">
-            <a href="#" class="item">Sitemap</a>
-            <a href="#" class="item">Contact Us</a>
-            <a href="#" class="item">Religious Ceremonies</a>
-            <a href="#" class="item">Gazebo Plans</a>
-          </div>
-        </div>
-        <div class="three wide column">
-          <h4 class="ui inverted header">Services</h4>
-          <div class="ui inverted link list">
-            <a href="#" class="item">Banana Pre-Order</a>
-            <a href="#" class="item">DNA FAQ</a>
-            <a href="#" class="item">How To Access</a>
-            <a href="#" class="item">Favorite X-Men</a>
-          </div>
-        </div>
-        <div class="seven wide column">
-          <h4 class="ui inverted header">Footer Header</h4>
-          <p>Extra space for a call to action inside the footer that could help re-engage users.</p>
-        </div>
-      </div>
+    <div class="ui container text container" >
+      Copyright &copy; 
+        <?php 
+          $startYear = 2018; 
+          $currentYear = date('Y');
+          echo $startYear . (($startYear != $currentYear) ? ' - ' . $currentYear : '');
+      ?>, Allrights reserved!
     </div>
   </div>
 </div>

@@ -24,12 +24,12 @@
                     </div>
                     <div class="container-login100-form-btn p-t-10">
                         <a class="login100-form-btn" href="{{ route('corporate') }}">
-                            Corporate
+                            Corporate Registration
                         </a>
                     </div>
                     <div class="container-login100-form-btn p-t-10">
                         <a class="login100-form-btn" href="{{ route('individual') }}">
-                            Individual
+                            Individual Registration
                         </a>
                     </div>
                 <!-- </form> -->
